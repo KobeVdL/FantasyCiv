@@ -8,7 +8,7 @@ namespace FantasyCiv
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
+        //test met extra test++++
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
