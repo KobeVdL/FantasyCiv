@@ -80,7 +80,7 @@ namespace FantasyCiv
             //Rectangle
             Texture2D rect = new Texture2D(graphics.GraphicsDevice, 1, 1);// (int) this.getWidth(spriteFont)+5, (int)this.getHeight(spriteFont)+5);
             rect.SetData(new[] { Color.White });
-            spriteBatch.Draw(rect, new Rectangle((int) this.position.X, (int)this.position.Y,(int)this.getWidth(),(int)this.getHeight()), boxColor);
+            spriteBatch.Draw(rect, new Rectangle((int) this.position.X, (int)this.position.Y,this.getWidth(),this.getHeight()), boxColor);
             spriteBatch.DrawString(spriteFont, this.getName(), position, Color.Black);
         }
 

@@ -72,6 +72,11 @@ namespace FantasyCiv
 
         public override void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
+            Color boxColor = Color.Green;
+            Texture2D rect = new Texture2D(graphics.GraphicsDevice, 1, 1);
+            rect.SetData(new[] { Color.White });
+            spriteBatch.Draw(rect, new Rectangle((int)this.position.X, (int)this.position.Y, this.getWidth(), this.getHeight()), boxColor);
+
             foreach (GameObject gameObject in order)
             {
                 gameObject.draw(spriteBatch, graphics);
