@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>D:/MijnDocumenten/My Games/SelfMadeGames/civFantasy/civFantasy/FantasyCiv/Content/Fonts/File.spritefont</SourceFile>
-  <SourceTime>2021-07-04T21:43:04.8844664+02:00</SourceTime>
+  <SourceTime>2021-07-12T11:05:08.8098088+02:00</SourceTime>
   <DestFile>D:/MijnDocumenten/My Games/SelfMadeGames/civFantasy/civFantasy/FantasyCiv/Content/bin/DesktopGL/Content/Fonts/Arial.xnb</DestFile>
-  <DestTime>2021-07-06T21:19:15.1655484+02:00</DestTime>
+  <DestTime>2021-07-12T11:05:13.8801287+02:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2020-08-10T18:17:54+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
