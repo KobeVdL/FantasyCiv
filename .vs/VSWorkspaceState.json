@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\FantasyCiv"
+    "\\FantasyCiv",
+    "\\FantasyCiv\\Content"
   ],
   "SelectedNode": "\\FantasyCiv.sln",
   "PreviewInSolutionExplorer": false

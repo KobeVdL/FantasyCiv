@@ -12,7 +12,7 @@ namespace FantasyCiv
         protected Vector2 position;
         protected int width;
         protected int height;
-        protected ContentListener contentLoaderListener;
+        protected ContentListener contentListener;
 
         public GameObject(int x, int y)
         {
@@ -81,12 +81,12 @@ namespace FantasyCiv
 
         public virtual void setContentListener(ContentListener contentListener)
         {
-            contentLoaderListener = contentListener;
+            this.contentListener = contentListener;
         }
 
         public ContentListener getContentListener()
         {
-            return contentLoaderListener;
+            return contentListener;
         }
     }
 }

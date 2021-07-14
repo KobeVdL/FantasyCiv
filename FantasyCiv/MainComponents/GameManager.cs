@@ -13,9 +13,7 @@ namespace FantasyCiv.MainComponents
         private ContentListener contentListener { get; set; }
         private PlayerOrder playerOrder { get; set; }
 
-        private GrassTile grass;
-        private GrassTile grass2;
-        private GrassTile grass3;
+        private TileMap map;
 
         bool enterPressed = false;
         public GameManager(ContentListener contentListener)
@@ -46,15 +44,7 @@ namespace FantasyCiv.MainComponents
             playerOrder.addPlayer(player2);
             playerOrder.addPlayer(player3);
             playerOrder.load();
-            grass = new GrassTile(50, 50);
-            grass.setContentListener(contentListener);
-            grass.load();
-            grass2 = new GrassTile(grass.getWidth()+50, 50);
-            grass2.setContentListener(contentListener);
-            grass2.load();
-            grass3 = new GrassTile(grass.getWidth()/2 + 50, 50+(grass.getHeight()*3/4));
-            grass3.setContentListener(contentListener);
-            grass3.load();
+            map = new TileMap(50, 50, 5, 8, contentListener);
         }
 
         public void load()
@@ -81,9 +71,7 @@ namespace FantasyCiv.MainComponents
         public void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
             playerOrder.draw(spriteBatch, graphics);
-            grass.draw(spriteBatch, graphics);
-            grass2.draw(spriteBatch, graphics);
-            grass3.draw(spriteBatch, graphics);
+            map.draw(spriteBatch, graphics);
         }
 
 

@@ -147,12 +147,12 @@ namespace FantasyCiv
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            //GraphicsDevice.Clear(Color.CornflowerBlue);
             // TODO: Add your drawing code here
             //playerOrder.draw(spriteBatch, spriteFont);
             //################TUTORIAL#################"
             // set screen background color
-           // GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.Black);
 
             //coTileMap = new MGWorkBench_ScrollingHexMap.Classes.TileMap(coSpriteBatch, coSpriteFont, coGraphicsDeviceManager, coTexture2DTile);
             //coTileMap.Draw_SampleTileMap(csScrollDirection, ciRowPosition, ciColumnPosition);

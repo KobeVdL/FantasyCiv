@@ -7,9 +7,9 @@ using System.Text;
 
 namespace FantasyCiv
 {
-    class GameObjectContainer: GameObject
+    class GameObjectContainer<T> : GameObject where T : GameObject
     {
-        protected ArrayList gameObjectList = new ArrayList();
+        protected ArrayList elements = new ArrayList();
 
         // For a static size container
         public GameObjectContainer(int x, int y, int width, int height) : base(x,y,width,height)
@@ -24,14 +24,14 @@ namespace FantasyCiv
         }
 
 
-        public void addGameObject(GameObject gameObject)
+        public void addToContainer(T gameObject)
         {
-            gameObjectList.Add(gameObject);
+            elements.Add(gameObject);
         }
 
         public override void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
-            foreach (GameObject gameObject in gameObjectList)
+            foreach (T gameObject in elements)
             {
                 gameObject.draw(spriteBatch,graphics);
             }
@@ -39,21 +39,21 @@ namespace FantasyCiv
 
         public override void load()
         {
-            foreach(GameObject gameObject in gameObjectList)
+            foreach(T gameObject in elements)
             {
                 gameObject.load();
             }
         }
 
-        public void removeGameObject(GameObject gameObject)
+        public void removeGameObject(T gameObject)
         {
-            gameObjectList.Remove(gameObject);
+            elements.Remove(gameObject);
         }
 
         public override void setContentListener(ContentListener contentListener)
         {
             base.setContentListener(contentListener);
-            foreach (GameObject gameObject in gameObjectList)
+            foreach (T gameObject in elements)
             {
                 gameObject.setContentListener(contentListener);
             }

@@ -86,7 +86,7 @@ namespace FantasyCiv
 
         public override void load()
         {
-            spriteFont = contentLoaderListener.retrieveFont("Arial");
+            spriteFont = contentListener.retrieveFont("Arial");
         }
     }
 }

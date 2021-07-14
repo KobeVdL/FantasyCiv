@@ -20,7 +20,7 @@ namespace FantasyCiv.GameElements
 
         public override void load()
         {
-            standardTexture = contentLoaderListener.retrieveImage("Tiles/grass");
+            standardTexture = contentListener.retrieveImage("Tiles/grass");
         }
     }
 }
