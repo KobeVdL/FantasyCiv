@@ -22,3 +22,6 @@ D:\MijnDocumenten\My Games\SelfMadeGames\civFantasy\civFantasy\FantasyCiv\obj\De
 D:\MijnDocumenten\My Games\SelfMadeGames\civFantasy\civFantasy\FantasyCiv\obj\Debug\netcoreapp3.1\FantasyCiv.pdb
 D:\MijnDocumenten\My Games\SelfMadeGames\civFantasy\civFantasy\FantasyCiv\obj\Debug\netcoreapp3.1\FantasyCiv.genruntimeconfig.cache
 D:\MijnDocumenten\My Games\SelfMadeGames\civFantasy\civFantasy\FantasyCiv\bin\Debug\netcoreapp3.1\Content\Fonts\Arial.xnb
+D:\MijnDocumenten\My Games\SelfMadeGames\civFantasy\civFantasy\FantasyCiv\bin\Debug\netcoreapp3.1\Content\Images\Tiles\singlehexagonaltile.xnb
+D:\MijnDocumenten\My Games\SelfMadeGames\civFantasy\civFantasy\FantasyCiv\bin\Debug\netcoreapp3.1\Content\Images\Tiles\grass2.xnb
+D:\MijnDocumenten\My Games\SelfMadeGames\civFantasy\civFantasy\FantasyCiv\bin\Debug\netcoreapp3.1\Content\Images\Tiles\grass.xnb

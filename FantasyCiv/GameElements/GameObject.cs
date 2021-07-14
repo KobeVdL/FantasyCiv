@@ -64,6 +64,15 @@ namespace FantasyCiv
             this.setX(x);
             this.setY(y);
         }
+        public int getX()
+        {
+            return (int)this.getPosition().X;
+        }
+
+        public int getY()
+        {
+            return (int)this.getPosition().Y;
+        }
 
         public Vector2 getPosition()
         {
