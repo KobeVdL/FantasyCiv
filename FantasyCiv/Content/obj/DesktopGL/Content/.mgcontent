@@ -6,9 +6,11 @@
   <SourceFiles>
     <File>D:/MijnDocumenten/My Games/SelfMadeGames/civFantasy/civFantasy/FantasyCiv/Content/Fonts/File.spritefont</File>
     <File>D:/MijnDocumenten/My Games/SelfMadeGames/civFantasy/civFantasy/FantasyCiv/Content/Images/Tiles/grass2.png</File>
+    <File>D:/MijnDocumenten/My Games/SelfMadeGames/civFantasy/civFantasy/FantasyCiv/Content/Images/Tiles/selectedTile.png</File>
   </SourceFiles>
   <DestFiles>
     <File>Fonts/Arial.spritefont</File>
     <File>Images/Tiles/grass.png</File>
+    <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

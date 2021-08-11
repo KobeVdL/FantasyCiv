@@ -16,6 +16,8 @@ namespace FantasyCiv.MainComponents
         private TileMap map;
 
         bool enterPressed = false;
+
+        MouseState oldMouseState;
         public GameManager(ContentListener contentListener)
         {
             this.contentListener = contentListener;
@@ -44,7 +46,7 @@ namespace FantasyCiv.MainComponents
             playerOrder.addPlayer(player2);
             playerOrder.addPlayer(player3);
             playerOrder.load();
-            map = new TileMap(50, 50, 5, 8, contentListener);
+            map = new TileMap(50, 50, 7, 7, contentListener);
         }
 
         public void load()
@@ -52,6 +54,7 @@ namespace FantasyCiv.MainComponents
 
         }
 
+        // GOOD WEBSITE http://rbwhitaker.wikidot.com/mouse-input
         public void update(GameTime gameTime)
         {
             var kstate = Keyboard.GetState();
@@ -66,6 +69,14 @@ namespace FantasyCiv.MainComponents
                 enterPressed = false;
             }
 
+            MouseState mouseState = Mouse.GetState();
+            if (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released)
+            {
+                int x = mouseState.X;
+                int y = mouseState.Y;
+                map.handleMouseClick(x, y);
+            }
+            oldMouseState = mouseState;
         }
 
         public void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)

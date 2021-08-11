@@ -88,5 +88,10 @@ namespace FantasyCiv
         {
             return contentListener;
         }
+
+        public virtual void  handleMouseClick(int x, int y)
+        {
+
+        }
     }
 }

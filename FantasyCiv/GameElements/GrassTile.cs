@@ -16,11 +16,21 @@ namespace FantasyCiv.GameElements
         public override void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
             spriteBatch.Draw(standardTexture, this.getPosition(), Color.White);
+            if (isSelected())
+            {
+                spriteBatch.Draw(selectedTexture, this.getPosition(), Color.White);
+            }
         }
 
         public override void load()
         {
             standardTexture = contentListener.retrieveImage("Tiles/grass");
+            selectedTexture = contentListener.retrieveImage("Tiles/selectedTile");
+        }
+
+        public override void handleMouseClick(int x, int y)
+        {
+            this.setSelected(! this.isSelected());
         }
     }
 }
