@@ -37,7 +37,12 @@ namespace FantasyCiv.GameElements
                 {
                     xVar = width / 2 + x;
                 }
-                map.Add(createArrayOfTiles(widthTiles, xVar, yVar));
+                List<HexTile> availableTiles = new List<HexTile>(new HexTile[] {
+                    new GrassTile(0,0),
+                    new WaterTile(0,0),
+                    new DesertTile(0,0)
+                    }) ;
+                map.Add(createRandomMap(widthTiles, xVar, yVar,availableTiles));
                 yVar +=(int)((height * 3) / 4);
             }
         }
@@ -74,24 +79,54 @@ namespace FantasyCiv.GameElements
             GrassTile grass = new GrassTile(0, 0);
             grass.setContentListener(contentListener);
             grass.load();
-            this.tileSize = grass.getHeight() / 2.0;
+            this.tileSize = (grass.getHeight() / 2.0) -1;
         }
 
         private List<HexTile> createArrayOfTiles(int nmbOfTiles, int x, int y)
         {
-            GrassTile grass = new GrassTile(0, 0);
-            grass.setContentListener(contentListener);
-            grass.load();
+            int tileWidth = (int) Math.Round(this.tileSize * (Math.Sqrt(3)));
+            HexTile tile;
             List<HexTile> array = new List<HexTile>();
             for (int i = 0; i < nmbOfTiles; i++)
             {
-                GrassTile tile = new GrassTile(i * grass.getWidth() + x, y);
+                if (i % 3 == 0)
+                {
+                    tile = new WaterTile(i * tileWidth + x, y);
+                }
+                else if (i % 4 == 0)
+                {
+                    tile = new DesertTile(i * tileWidth + x, y);
+                }
+                else
+                {
+                    tile = new GrassTile(i * tileWidth + x, y);
+                }
                 tile.setContentListener(contentListener);
                 tile.load();
                 array.Add(tile);
             }
             return array;
         }
+
+        public List<HexTile> createRandomMap(int nmbOfTiles, int x, int y, List<HexTile> availableTiles)
+        {
+            var rand = new Random();
+            int sizeAvailable = availableTiles.Count;
+            int tileWidth = (int)Math.Round(this.tileSize * (Math.Sqrt(3)));
+            HexTile tile;
+            List<HexTile> array = new List<HexTile>();
+            for (int i = 0; i < nmbOfTiles; i++)
+            {
+                int indexTile = rand.Next(0, sizeAvailable);
+                tile = availableTiles[indexTile].createTile(i * tileWidth + x, y);
+                tile.setContentListener(contentListener);
+                tile.load();
+                array.Add(tile);
+            }
+            return array;
+
+        }
+
         /**
          * r is the row number, q is the diagonal column, r can be negative.
          * 

@@ -49,26 +49,9 @@ namespace FantasyCiv.GameElements
         {
             return this.selected;
         }
-/*
-        public override void handleMouseClick(int x, int y)
-        {
-            int relX = x - this.getX();
-            int relY = y - this.getY();
-            if (isInsideHexagon(x, y))
-            {
 
-            }
-            this.setSelected(!this.isSelected());
-        }
+        public abstract HexTile createTile(int x, int y);
 
-        // see colors rectangles https://gamedev.stackexchange.com/questions/15110/recognizing-a-hexagonal-clickbox
-        public bool isInsideHexagon(int x, int y)
-        {
-            // red rectangle
-            if(x>=this.getX() && x<= this.getX() + this.getWidth()/2)
-        }
-
-        */
     }
 
 

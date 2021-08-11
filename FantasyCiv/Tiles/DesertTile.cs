@@ -6,9 +6,9 @@ using System.Text;
 
 namespace FantasyCiv.GameElements
 {
-    class GrassTile : HexTile
+    class DesertTile : HexTile
     {
-        public GrassTile(int x, int y) : base(x, y)
+        public DesertTile(int x, int y) : base(x, y)
         {
 
         }
@@ -21,16 +21,19 @@ namespace FantasyCiv.GameElements
                 spriteBatch.Draw(selectedTexture, this.getPosition(), Color.White);
             }
         }
-
+        public override void handleMouseClick(int x, int y)
+        {
+            this.setSelected(!this.isSelected());
+        }
         public override void load()
         {
-            standardTexture = contentListener.retrieveImage("Tiles/grass");
+            standardTexture = contentListener.retrieveImage("Tiles/desert");
             selectedTexture = contentListener.retrieveImage("Tiles/selectedTile");
         }
 
-        public override void handleMouseClick(int x, int y)
+        public override HexTile createTile(int x, int y)
         {
-            this.setSelected(! this.isSelected());
+            return new DesertTile(x, y);
         }
     }
 }
