@@ -148,6 +148,23 @@ namespace FantasyCiv.GameElements
             int[] roundedHex = hexRound(doubleQ, doubleR);
             return getTileAtCoordinate(roundedHex[0], roundedHex[1]);
         }
+
+        public HexTile getRandomLandTile()
+        {
+            var rand = new Random();
+            HexTile randomTile;
+            int row = rand.Next(0, map.Count);
+            int column = rand.Next(0, map[row].Count);
+            randomTile = map[row][column];
+            while(randomTile is WaterTile)
+            {
+                row = rand.Next(0, map.Count);
+                column = rand.Next(0, map[row].Count);
+                randomTile = map[row][column];
+            }
+            return randomTile;
+            
+        }
         private int[] hexRound(double q, double r)
         {
             double x = q;

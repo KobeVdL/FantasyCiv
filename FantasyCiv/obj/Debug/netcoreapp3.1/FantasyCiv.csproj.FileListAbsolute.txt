@@ -28,3 +28,4 @@ D:\MijnDocumenten\My Games\SelfMadeGames\civFantasy\civFantasy\FantasyCiv\bin\De
 D:\MijnDocumenten\My Games\SelfMadeGames\civFantasy\civFantasy\FantasyCiv\bin\Debug\netcoreapp3.1\Content\Images\Tiles\selectedTile.xnb
 D:\MijnDocumenten\My Games\SelfMadeGames\civFantasy\civFantasy\FantasyCiv\bin\Debug\netcoreapp3.1\Content\Images\Tiles\water.xnb
 D:\MijnDocumenten\My Games\SelfMadeGames\civFantasy\civFantasy\FantasyCiv\bin\Debug\netcoreapp3.1\Content\Images\Tiles\desert.xnb
+D:\MijnDocumenten\My Games\SelfMadeGames\civFantasy\civFantasy\FantasyCiv\bin\Debug\netcoreapp3.1\Content\Images\Districts\city.xnb

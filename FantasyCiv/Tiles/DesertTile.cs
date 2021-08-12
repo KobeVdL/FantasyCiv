@@ -12,15 +12,6 @@ namespace FantasyCiv.GameElements
         {
 
         }
-
-        public override void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics,int x, int y)
-        {
-            spriteBatch.Draw(standardTexture, this.getAbsolutePosition(x,y), Color.White);
-            if (isSelected())
-            {
-                spriteBatch.Draw(selectedTexture, this.getAbsolutePosition(x, y), Color.White);
-            }
-        }
         public override void handleMouseClick(int x, int y)
         {
             this.setSelected(!this.isSelected());

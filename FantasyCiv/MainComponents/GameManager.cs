@@ -49,6 +49,14 @@ namespace FantasyCiv.MainComponents
             playerOrder.addPlayer(player3);
             playerOrder.load();
             map = new TileMap(50, 50, 20, 20, contentListener);
+            District city = new City(0, 0);
+            city.setContentListener(contentListener);
+            city.load();
+            map.getRandomLandTile().addDistrict(city);
+            District city2 = new City(0, 0);
+            city2.setContentListener(contentListener);
+            city2.load();
+            map.getRandomLandTile().addDistrict(city2);
         }
 
         public void load()
@@ -84,8 +92,8 @@ namespace FantasyCiv.MainComponents
 
         public void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
+            map.draw(spriteBatch, graphics, 0, 0);
             playerOrder.draw(spriteBatch, graphics,0,0);
-            map.draw(spriteBatch, graphics,0,0);
         }
 
         public void moveMap()

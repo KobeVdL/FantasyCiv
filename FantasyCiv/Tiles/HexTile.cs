@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,10 +11,25 @@ namespace FantasyCiv.GameElements
         protected Texture2D standardTexture;
         protected Texture2D selectedTexture;
 
+        List<District> districts = new List<District>();
+
         bool selected;
 
         public HexTile(int x, int y) : base(x, y)
         {
+        }
+
+        public override void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics, int x, int y)
+        {
+            spriteBatch.Draw(standardTexture, this.getAbsolutePosition(x, y), Color.White);
+            foreach(District element in districts)
+            {
+                element.draw(spriteBatch,graphics, x+this.getX(), y+this.getY());
+            }
+            if (isSelected())
+            {
+                spriteBatch.Draw(selectedTexture, this.getAbsolutePosition(x, y), Color.White);
+            }
         }
 
         public int getImageWidth()
@@ -50,7 +66,14 @@ namespace FantasyCiv.GameElements
             return this.selected;
         }
 
+        public void addDistrict(District newDistrict)
+        {
+            this.districts.Add(newDistrict);
+        }
+
         public abstract HexTile createTile(int x, int y);
+
+
 
     }
 
