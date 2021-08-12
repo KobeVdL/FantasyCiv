@@ -119,6 +119,27 @@ namespace FantasyCiv.MainComponents
             // mouse state logic (get the current state of the mouse)
             MouseState mouseState = Mouse.GetState();
 
+            int middleX = screen.getWidth() / 2;
+            int middleY = screen.getHeight() / 2;
+            int xMovementSpeed = (middleX - mouseState.X) / 60;
+            int yMovementSpeed = (middleY - mouseState.Y) / 60;
+            //map.moveObject(xMovementSpeed, yMovementSpeed);
+            if (Math.Abs(xMovementSpeed) > 2.5)
+            {
+                map.moveX(xMovementSpeed);
+            }
+            if (Math.Abs(yMovementSpeed) > 2.5)
+            {
+                map.moveY(yMovementSpeed);
+            }
+            /*
+
+
+
+
+
+
+
             //move left    
             if (mouseState.X < 1)
             { // do something } // move right if (coMouseState.X > ciScreenWidth)
@@ -156,7 +177,7 @@ namespace FantasyCiv.MainComponents
             {
                 map.moveY(-3);
             }
-
+            */
         }
 
         public void setScreen(Adjustable screen)
