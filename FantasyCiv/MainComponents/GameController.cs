@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FantasyCiv
 {
-    public class GameController : Game
+    public class GameController : Game, Adjustable
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -43,6 +43,7 @@ namespace FantasyCiv
             // point to the content root directory for all images and fonts
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            
         }
 
         protected override void Initialize()
@@ -52,7 +53,13 @@ namespace FantasyCiv
             graphics.PreferredBackBufferWidth = gameScreenWidth;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = gameScreenHeight;   // set this value to the desired height of your window
             graphics.ApplyChanges();
-
+            // make the mouse standard pointer visible
+            this.IsMouseVisible = true;
+            // set the mouse top the center of screen 
+            //   * will also prevent automatic screen movement when the screen is displayed and the
+            //   * mouse position is calculated during the Update event; since it will be within any
+            //   * of the tested bounds no sudden screen movement will occur
+            Mouse.SetPosition(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
         }
 
         protected override void LoadContent()
@@ -82,6 +89,7 @@ namespace FantasyCiv
             //  PlayerTurn
             mainController = new MainController(this);
             manager = new GameManager(mainController);
+            manager.setScreen(this);
             // TODO: use this.Content to load your game content here
         }
 
@@ -159,6 +167,8 @@ namespace FantasyCiv
             // ---
 
             //###################END###############
+ 
+
             spriteBatch.Begin();
             manager.draw(spriteBatch,graphics);
             spriteBatch.End();
@@ -183,6 +193,26 @@ namespace FantasyCiv
         public int getScreenWidth()
         {
             return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+        }
+
+        public int getX()
+        {
+            return GraphicsDevice.Viewport.X;
+        }
+
+        public int getY()
+        {
+            return GraphicsDevice.Viewport.Y;
+        }
+
+        public int getWidth()
+        {
+            return GraphicsDevice.Viewport.Width;
+        }
+
+        public int getHeight()
+        {
+            return GraphicsDevice.Viewport.Height;
         }
     }
 }

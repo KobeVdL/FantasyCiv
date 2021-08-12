@@ -27,7 +27,7 @@ namespace FantasyCiv
         }
 
         public abstract void load();
-        public abstract void  draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics);
+        public abstract void  draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics, int x, int y);
 
         public virtual int getWidth()
         {
@@ -69,14 +69,36 @@ namespace FantasyCiv
             return (int)this.getPosition().X;
         }
 
+        public void moveX(int xMove)
+        {
+            this.setX(this.getX() + xMove);
+        }
+
         public int getY()
         {
             return (int)this.getPosition().Y;
         }
 
+        public void moveY(int yMove)
+        {
+            this.setY(this.getY() + yMove);
+        }
+
+        public void moveObject(int xMove, int yMove)
+        {
+            this.moveX(xMove);
+            this.moveY(yMove);
+        }
+
         public Vector2 getPosition()
         {
             return position;
+        }
+
+        public Vector2 getAbsolutePosition(int x, int y)
+        {
+            Vector2 moveVector = new Vector2(x, y);
+            return Vector2.Add(this.getPosition(), moveVector);
         }
 
         public virtual void setContentListener(ContentListener contentListener)

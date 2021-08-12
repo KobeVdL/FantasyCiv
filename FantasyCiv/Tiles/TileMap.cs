@@ -23,7 +23,7 @@ namespace FantasyCiv.GameElements
         private void initialize(int x, int y, int widthTiles, int heightTiles)
         {
             initializeTileSize();
-            int yVar = y;
+            int yVar = 0;//y;
             int xVar;
             int height = (int)(2 * tileSize);
             int width = (int)(Math.Sqrt(3) * tileSize);
@@ -31,13 +31,14 @@ namespace FantasyCiv.GameElements
             {
                 if (i % 2 == 0)
                 {
-                    xVar = x;
+                    xVar = 0;
                 }
                 else
                 {
-                    xVar = width / 2 + x;
+                    xVar = width / 2 ;
                 }
                 List<HexTile> availableTiles = new List<HexTile>(new HexTile[] {
+                    new GrassTile(0,0),
                     new GrassTile(0,0),
                     new WaterTile(0,0),
                     new DesertTile(0,0)
@@ -47,13 +48,13 @@ namespace FantasyCiv.GameElements
             }
         }
 
-        public override void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
+        public override void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics, int x, int y)
         {
             foreach (List<HexTile> array in map)
             {
                 foreach (HexTile tile in array)
                 {
-                    tile.draw(spriteBatch, graphics);
+                    tile.draw(spriteBatch, graphics,x + this.getX(), y + this.getY());
                 }
             }
         }
@@ -147,16 +148,6 @@ namespace FantasyCiv.GameElements
             int[] roundedHex = hexRound(doubleQ, doubleR);
             return getTileAtCoordinate(roundedHex[0], roundedHex[1]);
         }
-
-
-
-
-
-
-
-
-
-
         private int[] hexRound(double q, double r)
         {
             double x = q;

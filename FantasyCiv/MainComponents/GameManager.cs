@@ -18,6 +18,8 @@ namespace FantasyCiv.MainComponents
         bool enterPressed = false;
 
         MouseState oldMouseState;
+
+        Adjustable screen;
         public GameManager(ContentListener contentListener)
         {
             this.contentListener = contentListener;
@@ -46,7 +48,7 @@ namespace FantasyCiv.MainComponents
             playerOrder.addPlayer(player2);
             playerOrder.addPlayer(player3);
             playerOrder.load();
-            map = new TileMap(50, 50, 7, 7, contentListener);
+            map = new TileMap(50, 50, 20, 20, contentListener);
         }
 
         public void load()
@@ -64,6 +66,7 @@ namespace FantasyCiv.MainComponents
                 playerOrder.nextPlayer();
                 enterPressed = true;
             }
+            moveMap();
             if (kstate.IsKeyUp(Keys.Enter) && enterPressed)
             {
                 enterPressed = false;
@@ -81,10 +84,85 @@ namespace FantasyCiv.MainComponents
 
         public void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
-            playerOrder.draw(spriteBatch, graphics);
-            map.draw(spriteBatch, graphics);
+            playerOrder.draw(spriteBatch, graphics,0,0);
+            map.draw(spriteBatch, graphics,0,0);
         }
 
+        public void moveMap()
+        {
+            var kstate = Keyboard.GetState();
+            //move left    
+            if (kstate.IsKeyDown(Keys.Left))
+            {
+                map.moveX(1);
+            }
+
+            // move right
+            if (kstate.IsKeyDown(Keys.Right))
+            {
+                map.moveX(-1);
+            }
+
+            // move up
+            if (kstate.IsKeyDown(Keys.Up))
+            {
+                map.moveY(1);
+            }
+
+
+            // move down    
+            if (kstate.IsKeyDown(Keys.Down))
+            {
+                map.moveY(-1);
+            }
+
+            // mouse state logic (get the current state of the mouse)
+            MouseState mouseState = Mouse.GetState();
+
+            //move left    
+            if (mouseState.X < 1)
+            { // do something } // move right if (coMouseState.X > ciScreenWidth)
+                map.moveX(6);
+            }
+            else if (mouseState.X < 100) // in the lower 10 pixels
+            {
+                map.moveX(3);
+            }
+
+            if(mouseState.X> screen.getWidth())
+            {
+                map.moveX(-6);
+            }
+            else if(mouseState.X > screen.getWidth()-100)
+            {
+                map.moveX(-3);
+            }
+
+            // move up
+            if (mouseState.Y < 1)
+            { // do something } // move down if (coMouseState.Y > ciScreenHeight)
+                map.moveY(6);
+            }
+            else if (mouseState.Y < 100)
+            {
+                map.moveY(3);
+            }
+
+            if (mouseState.Y > screen.getHeight())
+            {
+                map.moveY(-6);
+            }
+            else if (mouseState.Y > screen.getHeight()-100)
+            {
+                map.moveY(-3);
+            }
+
+        }
+
+        public void setScreen(Adjustable screen)
+        {
+            this.screen = screen;
+        }
 
     }
 }

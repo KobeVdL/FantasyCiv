@@ -29,11 +29,11 @@ namespace FantasyCiv
             elements.Add(gameObject);
         }
 
-        public override void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
+        public override void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics, int x, int y)
         {
             foreach (T gameObject in elements)
             {
-                gameObject.draw(spriteBatch,graphics);
+                gameObject.draw(spriteBatch,graphics, x + this.getX(), y + this.getY());
             }
         }
 

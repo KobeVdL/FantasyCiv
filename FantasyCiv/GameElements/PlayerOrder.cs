@@ -70,16 +70,17 @@ namespace FantasyCiv
             return (int)turn.getPosition().Y + turn.getHeight(); //TODO ik weet niet of we float of int moeten gebruiken
         }
 
-        public override void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
+        public override void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics,int x, int y)
         {
             Color boxColor = Color.Green;
+            Vector2 absPosition = this.getAbsolutePosition(x, y);
             Texture2D rect = new Texture2D(graphics.GraphicsDevice, 1, 1);
             rect.SetData(new[] { Color.White });
-            spriteBatch.Draw(rect, new Rectangle((int)this.position.X, (int)this.position.Y, this.getWidth(), this.getHeight()), boxColor);
+            spriteBatch.Draw(rect, new Rectangle((int)absPosition.X, (int)absPosition.Y, this.getWidth(), this.getHeight()), boxColor);
 
             foreach (GameObject gameObject in order)
             {
-                gameObject.draw(spriteBatch, graphics);
+                gameObject.draw(spriteBatch, graphics, x + this.getX(), y + this.getY());
             }
         }
 
