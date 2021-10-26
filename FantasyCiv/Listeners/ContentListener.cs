@@ -5,6 +5,9 @@ using System.Text;
 
 namespace FantasyCiv
 {
+    /// <summary>
+    /// Interface of class that could retrieve fonts or images
+    /// </summary>
     interface ContentListener
     {
 

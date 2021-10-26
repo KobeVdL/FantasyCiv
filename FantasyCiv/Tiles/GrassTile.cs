@@ -6,6 +6,9 @@ using System.Text;
 
 namespace FantasyCiv.GameElements
 {
+    /// <summary>
+    /// GrassTile
+    /// </summary>
     class GrassTile : HexTile
     {
         public GrassTile(int x, int y) : base(x, y)

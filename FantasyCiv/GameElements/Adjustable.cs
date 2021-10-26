@@ -4,6 +4,9 @@ using System.Text;
 
 namespace FantasyCiv
 {
+    /// <summary>
+    /// Interface of a class that could proportions or position during run
+    /// </summary>
     interface Adjustable
     {
 

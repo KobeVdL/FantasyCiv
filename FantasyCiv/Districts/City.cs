@@ -6,8 +6,14 @@ using System.Text;
 
 namespace FantasyCiv
 {
+    /// <summary>
+    ///  This is a city class discribing a kind of district that could be placed on tiles.
+    /// </summary>
     class City: District
     {
+        /// <summary>
+        /// Standard texture of this city
+        /// </summary>
         protected Texture2D standardTexture;
         public City(int x, int y) : base(x,y)
         {
@@ -16,7 +22,7 @@ namespace FantasyCiv
 
         public override void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics, int x, int y)
         {
-            spriteBatch.Draw(standardTexture, this.getAbsolutePosition(x, y), Color.White);
+            this.draw(standardTexture, spriteBatch, graphics, x, y);
         }
 
         public override void load()

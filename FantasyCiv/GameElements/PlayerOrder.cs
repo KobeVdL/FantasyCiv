@@ -6,6 +6,9 @@ using System.Text;
 //Namespace to FantasyCiv every file can retrieve it
 namespace FantasyCiv
 {
+    /// <summary>
+    /// The playerOrder of the civ game, lets players see which player is currently playing and which player is next
+    /// </summary>
     class PlayerOrder: GameObject
     {
         // Queue of players
@@ -16,6 +19,9 @@ namespace FantasyCiv
 
         }
 
+        /// <summary>
+        /// Put the next player on front and the current layer last in the queue
+        /// </summary>
         public void nextPlayer()
         {
             if (order.First != null)
@@ -33,6 +39,9 @@ namespace FantasyCiv
             }
         }
 
+        /// <summary>
+        /// Adds a player to the player order at the back of the list
+        /// </summary>
         public void addPlayer(PlayerTurn turnOfPlayer)
         {
             if (order.First == null)
@@ -43,11 +52,18 @@ namespace FantasyCiv
             this.updatePositions();
         }
 
+        /// <summary>
+        /// Adds a new player to the player order but adds it to the front of the turn order (could be used for special events)
+        /// </summary>
         public void priorityTurn(PlayerTurn turnOfPlayer)
         {
             order.AddFirst(turnOfPlayer);
+            this.updatePositions();
         }
 
+        /// <summary>
+        /// Updates the positions of all player orders
+        /// </summary>
         private void updatePositions()
         {
             int offset = 0;

@@ -2,6 +2,9 @@
 
 namespace FantasyCiv
 {
+    /// <summary>
+    /// GameClass of MonoGame
+    /// </summary>
     public static class Program
     {
         [STAThread]

@@ -6,12 +6,18 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace FantasyCiv
 {
+    /// <summary>
+    ///  PlayerTurn of the civ game
+    /// </summary>
     class PlayerTurn : GameObject
     {
         String name;
         bool active;
         SpriteFont spriteFont;
-
+        /// <summary>
+        /// Creates the playerturn of the civ game
+        /// </summary>
+        /// <param name="name"> The name of the player</param>
         public PlayerTurn(string name): base(0,0) // this is the same as super(0,0) in java
         {
             setName(name);
@@ -26,6 +32,9 @@ namespace FantasyCiv
             this.setActive(true);
         }
 
+        /// <summary>
+        /// Sets this player inActive
+        /// </summary>
         public void passTurn()
         {
             this.setActive(false);
@@ -39,10 +48,14 @@ namespace FantasyCiv
             this.name = name;
         }
 
+        /// <summary>
+        /// Returns the name of this playerTurn
+        /// </summary>
         public String getName()
         {
             return this.name;
         }
+
 
         public override int getWidth()
         {
@@ -54,12 +67,17 @@ namespace FantasyCiv
             return (int) spriteFont.MeasureString(this.getName()).Y;
         }
 
-
+        /// <summary>
+        /// Sets this playerTurn Active
+        /// </summary>
         public void setActive(bool active)
         {
             this.active = active;
         }
 
+        /// <summary>
+        /// Returns if this playerTurn is active or not
+        /// </summary>
         public bool getActive()
         {
             return this.active;

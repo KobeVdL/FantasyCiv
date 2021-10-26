@@ -8,6 +8,9 @@ using System.Text;
 
 namespace FantasyCiv.MainComponents
 {
+    /// <summary>
+    /// Manages the game elements like map et cetera
+    /// </summary>
     class GameManager
     {
         private ContentListener contentListener { get; set; }
@@ -20,15 +23,23 @@ namespace FantasyCiv.MainComponents
         MouseState oldMouseState;
 
         Adjustable screen;
+
+
         public GameManager(ContentListener contentListener)
         {
             this.contentListener = contentListener;
             this.initialize();
         }
 
+        /// <summary>
+        /// Initializes all the elements 
+        /// </summary>
         private void initialize()
         {
             playerOrder = new PlayerOrder(0, 0);
+
+            //            Camera.ViewportWidth = graphics.GraphicsDevice.Viewport.Width;
+            //            Camera.ViewportHeight = graphics.GraphicsDevice.Viewport.Height;
 
 
             //spriteFont = Content.Load<SpriteFont>("Fonts/Arial");
@@ -65,6 +76,10 @@ namespace FantasyCiv.MainComponents
         }
 
         // GOOD WEBSITE http://rbwhitaker.wikidot.com/mouse-input
+        /// <summary>
+        /// Called every Frame, respond to human interaction
+        /// </summary>
+        /// <param name="gameTime"> time that passed </param>
         public void update(GameTime gameTime)
         {
             var kstate = Keyboard.GetState();
@@ -88,6 +103,8 @@ namespace FantasyCiv.MainComponents
                 map.handleMouseClick(x, y);
             }
             oldMouseState = mouseState;
+
+            Camera.HandleInput(kstate);
         }
 
         public void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
@@ -96,6 +113,9 @@ namespace FantasyCiv.MainComponents
             playerOrder.draw(spriteBatch, graphics,0,0);
         }
 
+        /// <summary>
+        /// Moves the map if the user puts his mouse near the edges or click on the key buttons
+        /// </summary>
         public void moveMap()
         {
             var kstate = Keyboard.GetState();
@@ -140,54 +160,14 @@ namespace FantasyCiv.MainComponents
             {
                 map.moveY(yMovementSpeed);
             }
-            /*
-
-
-
-
-
-
-
-            //move left    
-            if (mouseState.X < 1)
-            { // do something } // move right if (coMouseState.X > ciScreenWidth)
-                map.moveX(6);
-            }
-            else if (mouseState.X < 100) // in the lower 10 pixels
-            {
-                map.moveX(3);
-            }
-
-            if(mouseState.X> screen.getWidth())
-            {
-                map.moveX(-6);
-            }
-            else if(mouseState.X > screen.getWidth()-100)
-            {
-                map.moveX(-3);
-            }
-
-            // move up
-            if (mouseState.Y < 1)
-            { // do something } // move down if (coMouseState.Y > ciScreenHeight)
-                map.moveY(6);
-            }
-            else if (mouseState.Y < 100)
-            {
-                map.moveY(3);
-            }
-
-            if (mouseState.Y > screen.getHeight())
-            {
-                map.moveY(-6);
-            }
-            else if (mouseState.Y > screen.getHeight()-100)
-            {
-                map.moveY(-3);
-            }
-            */
         }
 
+
+
+
+        /// <summary>
+        /// Sets the screen to the given screen
+        /// </summary>
         public void setScreen(Adjustable screen)
         {
             this.screen = screen;

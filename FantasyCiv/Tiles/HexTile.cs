@@ -6,10 +6,14 @@ using System.Text;
 
 namespace FantasyCiv.GameElements
 {
+    /// <summary>
+    /// The Hextile superclass of all tiles
+    /// </summary>
     abstract class HexTile : GameObject
     {
         protected Texture2D standardTexture;
         protected Texture2D selectedTexture;
+
 
         List<District> districts = new List<District>();
 
@@ -19,16 +23,19 @@ namespace FantasyCiv.GameElements
         {
         }
 
+        //https://docs.monogame.net/api/Microsoft.Xna.Framework.Graphics.SpriteBatch.html
+
         public override void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics, int x, int y)
         {
-            spriteBatch.Draw(standardTexture, this.getAbsolutePosition(x, y), Color.White);
-            foreach(District element in districts)
+            this.draw(standardTexture, spriteBatch, graphics, x, y);
+            foreach (District element in districts)
             {
                 element.draw(spriteBatch,graphics, x+this.getX(), y+this.getY());
             }
             if (isSelected())
             {
-                spriteBatch.Draw(selectedTexture, this.getAbsolutePosition(x, y), Color.White);
+                //public void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
+                this.draw(selectedTexture, spriteBatch, graphics, x, y);
             }
         }
 
