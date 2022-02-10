@@ -9,7 +9,7 @@ namespace FantasyCiv
     /// GameController controls all the low-level events of the game and pass them through the correct class
     /// The first class that is created and can retrieve fonts and images.
     /// </summary>
-    public class GameController : Game, Adjustable
+    public class GameController : Game
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -81,8 +81,7 @@ namespace FantasyCiv
 
             //  PlayerTurn
             mainController = new MainController(this);
-            manager = new GameManager(mainController);
-            manager.setScreen(this);
+            manager = new GameManager(mainController, GraphicsDevice.Viewport);
         }
 
        /// <summary>
@@ -107,9 +106,9 @@ namespace FantasyCiv
 
             // set screen background color
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin();
+            //spriteBatch.Begin();
             manager.draw(spriteBatch,graphics);
-            spriteBatch.End();
+            //spriteBatch.End();
             base.Draw(gameTime);
         }
 
@@ -133,24 +132,6 @@ namespace FantasyCiv
         }
 
 
-        public int getX()
-        {
-            return GraphicsDevice.Viewport.X;
-        }
-
-        public int getY()
-        {
-            return GraphicsDevice.Viewport.Y;
-        }
-
-        public int getWidth()
-        {
-            return GraphicsDevice.Viewport.Width;
-        }
-
-        public int getHeight()
-        {
-            return GraphicsDevice.Viewport.Height;
-        }
+        
     }
 }

@@ -18,15 +18,18 @@ namespace FantasyCiv.MainComponents
 
         private TileMap map;
 
+        private Viewport viewport;
+        private Camera camera;
+
         bool enterPressed = false;
 
         MouseState oldMouseState;
 
-        Adjustable screen;
 
 
-        public GameManager(ContentListener contentListener)
+        public GameManager(ContentListener contentListener, Viewport viewport)
         {
+            this.viewport = viewport;
             this.contentListener = contentListener;
             this.initialize();
         }
@@ -36,6 +39,7 @@ namespace FantasyCiv.MainComponents
         /// </summary>
         private void initialize()
         {
+            camera = new Camera(viewport);
             playerOrder = new PlayerOrder(0, 0);
 
             //            Camera.ViewportWidth = graphics.GraphicsDevice.Viewport.Width;
@@ -89,7 +93,6 @@ namespace FantasyCiv.MainComponents
                 playerOrder.nextPlayer();
                 enterPressed = true;
             }
-            moveMap();
             if (kstate.IsKeyUp(Keys.Enter) && enterPressed)
             {
                 enterPressed = false;
@@ -98,80 +101,31 @@ namespace FantasyCiv.MainComponents
             MouseState mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released)
             {
-                int x = mouseState.X;
-                int y = mouseState.Y;
-                map.handleMouseClick(x, y);
+                Vector2 point = new Vector2(mouseState.X, mouseState.Y);
+                Vector2 realWorldPoint =camera.ScreenToWorldSpace(point);
+                map.handleMouseClick((int) realWorldPoint.X,(int) realWorldPoint.Y);
             }
             oldMouseState = mouseState;
 
-            Camera.HandleInput(kstate);
+            //Camera.HandleInput(kstate);
         }
 
         public void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
+            camera.UpdateCamera(viewport);
+            Matrix transformMatrix = camera.Transform;
+            spriteBatch.Begin();
+            playerOrder.draw(spriteBatch, graphics, 0, 0);
+            spriteBatch.End();
+
+
+            //Named and Optional Arguments see https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments
+            spriteBatch.Begin(transformMatrix: transformMatrix);
             map.draw(spriteBatch, graphics, 0, 0);
-            playerOrder.draw(spriteBatch, graphics,0,0);
+            spriteBatch.End();
         }
 
-        /// <summary>
-        /// Moves the map if the user puts his mouse near the edges or click on the key buttons
-        /// </summary>
-        public void moveMap()
-        {
-            var kstate = Keyboard.GetState();
-            //move left    
-            if (kstate.IsKeyDown(Keys.Left))
-            {
-                map.moveX(1);
-            }
-
-            // move right
-            if (kstate.IsKeyDown(Keys.Right))
-            {
-                map.moveX(-1);
-            }
-
-            // move up
-            if (kstate.IsKeyDown(Keys.Up))
-            {
-                map.moveY(1);
-            }
-
-
-            // move down    
-            if (kstate.IsKeyDown(Keys.Down))
-            {
-                map.moveY(-1);
-            }
-
-            // mouse state logic (get the current state of the mouse)
-            MouseState mouseState = Mouse.GetState();
-
-            int middleX = screen.getWidth() / 2;
-            int middleY = screen.getHeight() / 2;
-            int xMovementSpeed = (middleX - mouseState.X) / 60;
-            int yMovementSpeed = (middleY - mouseState.Y) / 60;
-            //map.moveObject(xMovementSpeed, yMovementSpeed);
-            if (Math.Abs(xMovementSpeed) > 2.5)
-            {
-                map.moveX(xMovementSpeed);
-            }
-            if (Math.Abs(yMovementSpeed) > 2.5)
-            {
-                map.moveY(yMovementSpeed);
-            }
-        }
-
-
-
-
-        /// <summary>
-        /// Sets the screen to the given screen
-        /// </summary>
-        public void setScreen(Adjustable screen)
-        {
-            this.screen = screen;
-        }
+    
 
     }
 }

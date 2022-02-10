@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/MijnDocumenten/My Games/SelfMadeGames/civFantasy/civFantasy/FantasyCiv/Content/Images/Tiles/desert.png</SourceFile>
-  <SourceTime>2021-08-11T16:24:38.6594479+02:00</SourceTime>
-  <DestFile>D:/MijnDocumenten/My Games/SelfMadeGames/civFantasy/civFantasy/FantasyCiv/Content/bin/DesktopGL/Content/Images/Tiles/desert.xnb</DestFile>
-  <DestTime>2021-08-11T16:25:35.473289+02:00</DestTime>
+  <SourceFile>D:/MijnDocumenten/CreatedGames/FantasyCiv/FantasyCiv/Content/Images/Tiles/desert.png</SourceFile>
+  <SourceTime>2021-11-16T21:49:07.0251577+01:00</SourceTime>
+  <DestFile>D:/MijnDocumenten/CreatedGames/FantasyCiv/FantasyCiv/Content/bin/DesktopGL/Content/Images/Tiles/desert.xnb</DestFile>
+  <DestTime>2022-02-07T19:42:55.6543665+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T18:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

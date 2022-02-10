@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "29vI1McG4B3a8i9Dd7PKxBw/da43NlUDm7cA6QagiaVmubFURX6nN+prZZAbraPvCFfpjAh1bG5vsd00N5LRVg==",
+  "dgSpecHash": "o4sTYcIGw9d5vZH7dBNvyC9EF+Kz+/qLSM365P/IbDUm5pLYcCPdAWExUefNB+9rmoiOiiWuA6/enakc4wB5FQ==",
   "success": true,
-  "projectFilePath": "D:\\MijnDocumenten\\My Games\\SelfMadeGames\\civFantasy\\civFantasy\\FantasyCiv\\FantasyCiv.csproj",
+  "projectFilePath": "D:\\MijnDocumenten\\CreatedGames\\FantasyCiv\\FantasyCiv\\FantasyCiv.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\kobe\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
-    "C:\\Users\\kobe\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
+    "C:\\Users\\ajani\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\ajani\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
   ],
   "logs": []
 }

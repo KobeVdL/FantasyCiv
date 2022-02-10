@@ -195,7 +195,7 @@ namespace FantasyCiv
 
         public void draw(Texture2D texture , SpriteBatch spriteBatch, GraphicsDeviceManager graphics, int x, int y)
         {
-            float scale = Camera.getScale();
+            float scale = 1;//TODO Camera.getScale();
             spriteBatch.Draw(texture, this.getAbsolutePosition(x, y), null, Color.White, 0.0f, new Vector2(0, 0), new Vector2(scale, scale), SpriteEffects.None, 0.0f);
         }
 

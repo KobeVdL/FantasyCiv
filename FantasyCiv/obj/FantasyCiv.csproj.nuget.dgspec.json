@@ -1,25 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\MijnDocumenten\\My Games\\SelfMadeGames\\civFantasy\\civFantasy\\FantasyCiv\\FantasyCiv.csproj": {}
+    "D:\\MijnDocumenten\\CreatedGames\\FantasyCiv\\FantasyCiv\\FantasyCiv.csproj": {}
   },
   "projects": {
-    "D:\\MijnDocumenten\\My Games\\SelfMadeGames\\civFantasy\\civFantasy\\FantasyCiv\\FantasyCiv.csproj": {
+    "D:\\MijnDocumenten\\CreatedGames\\FantasyCiv\\FantasyCiv\\FantasyCiv.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MijnDocumenten\\My Games\\SelfMadeGames\\civFantasy\\civFantasy\\FantasyCiv\\FantasyCiv.csproj",
+        "projectUniqueName": "D:\\MijnDocumenten\\CreatedGames\\FantasyCiv\\FantasyCiv\\FantasyCiv.csproj",
         "projectName": "FantasyCiv",
-        "projectPath": "D:\\MijnDocumenten\\My Games\\SelfMadeGames\\civFantasy\\civFantasy\\FantasyCiv\\FantasyCiv.csproj",
-        "packagesPath": "C:\\Users\\kobe\\.nuget\\packages\\",
-        "outputPath": "D:\\MijnDocumenten\\My Games\\SelfMadeGames\\civFantasy\\civFantasy\\FantasyCiv\\obj\\",
+        "projectPath": "D:\\MijnDocumenten\\CreatedGames\\FantasyCiv\\FantasyCiv\\FantasyCiv.csproj",
+        "packagesPath": "C:\\Users\\ajani\\.nuget\\packages\\",
+        "outputPath": "D:\\MijnDocumenten\\CreatedGames\\FantasyCiv\\FantasyCiv\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\kobe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ajani\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -71,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
