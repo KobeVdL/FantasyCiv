@@ -10,12 +10,14 @@
     <File>D:/MijnDocumenten/CreatedGames/FantasyCiv/FantasyCiv/Content/Images/Tiles/grass2.png</File>
     <File>D:/MijnDocumenten/CreatedGames/FantasyCiv/FantasyCiv/Content/Images/Tiles/selectedTile.png</File>
     <File>D:/MijnDocumenten/CreatedGames/FantasyCiv/FantasyCiv/Content/Images/Tiles/water.png</File>
+    <File>D:/MijnDocumenten/CreatedGames/FantasyCiv/FantasyCiv/Content/Images/Units/Stickmen.png</File>
   </SourceFiles>
   <DestFiles>
     <File>Fonts/Arial.spritefont</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>Images/Tiles/grass.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

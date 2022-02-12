@@ -94,3 +94,4 @@ D:\MijnDocumenten\CreatedGames\FantasyCiv\FantasyCiv\bin\Debug\netcoreapp3.1\run
 D:\MijnDocumenten\CreatedGames\FantasyCiv\FantasyCiv\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
 D:\MijnDocumenten\CreatedGames\FantasyCiv\FantasyCiv\obj\Debug\netcoreapp3.1\FantasyCiv.csproj.CopyComplete
 D:\MijnDocumenten\CreatedGames\FantasyCiv\FantasyCiv\obj\Debug\netcoreapp3.1\FantasyCiv.genruntimeconfig.cache
+D:\MijnDocumenten\CreatedGames\FantasyCiv\FantasyCiv\bin\Debug\netcoreapp3.1\Content\Images\Units\Stickmen.xnb

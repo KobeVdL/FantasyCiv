@@ -11,7 +11,7 @@ namespace FantasyCiv.GameElements
     /// </summary>
     class GrassTile : HexTile
     {
-        public GrassTile(int x, int y) : base(x, y)
+        public GrassTile(int x, int y, int qCoord, int rCoord) : base(x, y, qCoord, rCoord)
         {
 
         }
@@ -22,14 +22,9 @@ namespace FantasyCiv.GameElements
             selectedTexture = contentListener.retrieveImage("Tiles/selectedTile");
         }
 
-        public override void handleMouseClick(int x, int y)
+        public override HexTile createTile(int x, int y, int qCoord, int rCoord)
         {
-            this.setSelected(! this.isSelected());
-        }
-
-        public override HexTile createTile(int x, int y)
-        {
-            return new GrassTile(x, y);
+            return new GrassTile(x, y, qCoord, rCoord);
         }
     }
 }

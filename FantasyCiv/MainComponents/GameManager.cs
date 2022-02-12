@@ -1,4 +1,5 @@
 ﻿using FantasyCiv.GameElements;
+using FantasyCiv.Units;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -21,6 +22,7 @@ namespace FantasyCiv.MainComponents
         private Viewport viewport;
         private Camera camera;
 
+        private KeyboardState previousKeyBoardState;
         bool enterPressed = false;
 
         MouseState oldMouseState;
@@ -72,6 +74,10 @@ namespace FantasyCiv.MainComponents
             city2.setContentListener(contentListener);
             city2.load();
             map.getRandomLandTile().addDistrict(city2);
+            Stickmen stick = new Stickmen(10, 10);
+            stick.setContentListener(contentListener);
+            stick.load();
+            map.getRandomLandTile().unit = stick;
         }
 
         public void load()
@@ -88,40 +94,43 @@ namespace FantasyCiv.MainComponents
         {
             var kstate = Keyboard.GetState();
 
-            if (kstate.IsKeyDown(Keys.Enter) && !enterPressed)
+            if (changedKeyBoardState(kstate,Keys.Enter))
             {
                 playerOrder.nextPlayer();
-                enterPressed = true;
             }
-            if (kstate.IsKeyUp(Keys.Enter) && enterPressed)
-            {
-                enterPressed = false;
-            }
+
 
             MouseState mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released)
             {
                 Vector2 point = new Vector2(mouseState.X, mouseState.Y);
                 Vector2 realWorldPoint =camera.ScreenToWorldSpace(point);
-                map.handleMouseClick((int) realWorldPoint.X,(int) realWorldPoint.Y);
+                map.handleMouseClick((int) realWorldPoint.X,(int) realWorldPoint.Y,kstate);
             }
             oldMouseState = mouseState;
-
+            previousKeyBoardState = kstate; 
             //Camera.HandleInput(kstate);
         }
 
+
+        private bool changedKeyBoardState(KeyboardState kstate , Keys key)
+        {
+            return kstate.IsKeyDown(key) && !previousKeyBoardState.IsKeyDown(key);
+            return false;        }
         public void draw(SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
             camera.UpdateCamera(viewport);
             Matrix transformMatrix = camera.Transform;
-            spriteBatch.Begin();
-            playerOrder.draw(spriteBatch, graphics, 0, 0);
-            spriteBatch.End();
 
 
             //Named and Optional Arguments see https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments
             spriteBatch.Begin(transformMatrix: transformMatrix);
             map.draw(spriteBatch, graphics, 0, 0);
+            spriteBatch.End();
+
+            //creates objects unaffected by zooming and translations
+            spriteBatch.Begin();
+            playerOrder.draw(spriteBatch, graphics, 0, 0);
             spriteBatch.End();
         }
 

@@ -1,6 +1,7 @@
 ﻿using FantasyCiv.MainComponents;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -199,13 +200,18 @@ namespace FantasyCiv
             spriteBatch.Draw(texture, this.getAbsolutePosition(x, y), null, Color.White, 0.0f, new Vector2(0, 0), new Vector2(scale, scale), SpriteEffects.None, 0.0f);
         }
 
+        public void draw(Texture2D texture, SpriteBatch spriteBatch, GraphicsDeviceManager graphics, int x, int y,float scale)
+        {
+            spriteBatch.Draw(texture, this.getAbsolutePosition(x, y), null, Color.White, 0.0f, new Vector2(0, 0), new Vector2(scale, scale), SpriteEffects.None, 0.0f);
+        }
+
 
         /// <summary>
         ///  Descibes what has to be done when a mouse is clicked on the object
         /// </summary>
         /// <param name="x"> the edited x position </param>
         /// <param name="y"> the edited y position </param>
-        public virtual void  handleMouseClick(int x, int y)
+        public virtual void  handleMouseClick(int x, int y, KeyboardState kstate)
         {
 
         }

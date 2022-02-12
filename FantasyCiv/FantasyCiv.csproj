@@ -10,6 +10,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Troops\**" />
+    <EmbeddedResource Remove="Troops\**" />
+    <None Remove="Troops\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Content\grass2.png" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
@@ -27,8 +32,5 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Troops\" />
   </ItemGroup>
 </Project>

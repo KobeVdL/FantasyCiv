@@ -19,11 +19,15 @@ public class Camera
 
     private float currentMouseWheelValue, previousMouseWheelValue, zoom, previousZoom;
 
+    private float MAXVER = 1500;
+
+    private float MAXHOR = 1500;
+
     public Camera(Viewport viewport)
     {
         Bounds = viewport.Bounds;
         Zoom = 1f;
-        Position = Vector2.Zero;
+        Position = new Vector2(400,260);
         viewport = viewport;
     }
 
@@ -58,6 +62,23 @@ public class Camera
     public void MoveCamera(Vector2 movePosition)
     {
         Vector2 newPosition = Position + movePosition;
+
+        if( newPosition.X > MAXHOR)
+        {
+            newPosition.X = MAXHOR;
+        }
+        if (newPosition.X < 0)
+        {
+            newPosition.X = 0;
+        }
+        if (newPosition.Y > MAXVER)            //TODO maak afhankelijk
+        {
+            newPosition.Y = MAXVER;
+        }
+        else if(newPosition.Y < 0)
+        {
+            newPosition.Y = 0;
+        }
         Position = newPosition;
     }
 
@@ -92,8 +113,11 @@ public class Camera
         Vector2 cameraMovement = Vector2.Zero;
         int middleX = this.Bounds.Width / 2 ;
         int middleY = this.Bounds.Height / 2;
-        cameraMovement.X = (mouseState.X - middleX) / 60;
-        cameraMovement.Y = ( mouseState.Y- middleY ) / 60;
+        if (Math.Abs((mouseState.X - middleX)) > 200 || Math.Abs((mouseState.Y - middleY)) > 200)
+        {
+            cameraMovement.X = (mouseState.X - middleX) / 50;
+            cameraMovement.Y = (mouseState.Y - middleY) / 30;
+        }
         MoveCamera(cameraMovement);
 
     }

@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FantasyCiv.Tiles;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,14 +15,21 @@ namespace FantasyCiv.GameElements
     {
         protected Texture2D standardTexture;
         protected Texture2D selectedTexture;
+        int qCoord;
+        int rCoord;
+        public MapListener maplistener { get;  set; }
 
 
         List<District> districts = new List<District>();
+        public Unit unit{ get; set; }
 
         bool selected;
 
-        public HexTile(int x, int y) : base(x, y)
+        public HexTile(int x, int y,int qCoord, int rCoord) : base(x, y)
         {
+            this.qCoord = qCoord;
+            this.rCoord = rCoord;
+
         }
 
         //https://docs.monogame.net/api/Microsoft.Xna.Framework.Graphics.SpriteBatch.html
@@ -31,6 +40,10 @@ namespace FantasyCiv.GameElements
             foreach (District element in districts)
             {
                 element.draw(spriteBatch,graphics, x+this.getX(), y+this.getY());
+            }
+            if (unit != null)
+            {
+                unit.draw(spriteBatch, graphics, x + this.getX(), y + this.getY());
             }
             if (isSelected())
             {
@@ -78,10 +91,49 @@ namespace FantasyCiv.GameElements
             this.districts.Add(newDistrict);
         }
 
-        public abstract HexTile createTile(int x, int y);
+        public abstract HexTile createTile(int x, int y,int qCoord, int rCoord);
 
+        public void unselectTile()
+        {
+            this.setSelected(false);
+        }
 
+        /// <summary>
+        ///  Descibes what has to be done when a mouse is clicked on the object
+        /// </summary>
+        /// <param name="x"> the edited x position </param>
+        /// <param name="y"> the edited y position </param>
+        public virtual void handleMouseClick(int x, int y, KeyboardState kstate)
+        {
+            this.setSelected(!this.isSelected());
+            if (unit != null)
+            {
+                moveUnitRandom();
+            }
+        }
 
+        public Unit removeUnit()
+        {
+            Unit releasedUnit = this.unit;
+            this.unit = null;
+            return releasedUnit;
+        }
+
+        private void moveUnitRandom()
+        {
+            var rand = new Random();
+            List<HexTile> neighbours = this.getNeighbours();
+            int n = neighbours.Count;
+            int indexTile = rand.Next(0, n);
+            HexTile newTile = neighbours[indexTile];
+            maplistener.moveUnitTo(this, newTile.qCoord, newTile.rCoord);
+
+        }
+
+        private List<HexTile> getNeighbours()
+        {
+            return maplistener.getNeighbours(qCoord,rCoord);
+        }
     }
 
 
