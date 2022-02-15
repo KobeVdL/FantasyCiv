@@ -11,7 +11,7 @@ namespace FantasyCiv.GameElements
 {
     // This class works with Axial coordinates , generally the arrays behave like normal but the collumns follow a direction of the hexagon
     // more info see https://www.redblobgames.com/grids/hexagons/
-    class TileMap : GameObject ,MapListener// : GameObjectContainer<ArrayList>
+    class MapController : GameObject, MapListener// : GameObjectContainer<ArrayList>
     {
         private List<List<HexTile>> map = new List<List<HexTile>>();
         private double tileSize;
@@ -20,7 +20,7 @@ namespace FantasyCiv.GameElements
         private int qmax;
         private List<Unit> selectedUnits = new List<Unit>();
 
-        public TileMap(int x, int y, int widthTiles, int heightTiles, ContentListener contentListener) : base(x, y)
+        public MapController(int x, int y, int widthTiles, int heightTiles, ContentListener contentListener) : base(x, y)
         {
             this.setContentListener(contentListener);
             initialize(x, y, widthTiles, heightTiles);
@@ -41,25 +41,25 @@ namespace FantasyCiv.GameElements
                 }
                 else
                 {
-                    xVar = width / 2 ;
+                    xVar = width / 2;
                 }
                 List<HexTile> availableTiles = new List<HexTile>(new HexTile[] {
                     new GrassTile(0,0,0,0),
                     new GrassTile(0,0,0,0),
                     new WaterTile(0,0,0,0),
                     new DesertTile(0,0,0,0)
-                    }) ;
-                map.Add(createRandomMap(widthTiles, xVar, yVar,availableTiles));
-                yVar +=(int)((height * 3) / 4);
+                    });
+                map.Add(createRandomMap(widthTiles, xVar, yVar, availableTiles));
+                yVar += (int)((height * 3) / 4);
             }
             this.addMapListenerToMap();
         }
 
         private void addMapListenerToMap()
         {
-            foreach(List<HexTile> row in map)
+            foreach (List<HexTile> row in map)
             {
-                foreach(HexTile tile in row)
+                foreach (HexTile tile in row)
                 {
                     tile.maplistener = this;
                 }
@@ -72,7 +72,7 @@ namespace FantasyCiv.GameElements
             {
                 foreach (HexTile tile in array)
                 {
-                    tile.draw(spriteBatch, graphics,x + this.getX(), y + this.getY());
+                    tile.draw(spriteBatch, graphics, x + this.getX(), y + this.getY());
                 }
             }
         }
@@ -125,7 +125,7 @@ namespace FantasyCiv.GameElements
 
         private void unselectTiles()
         {
-            foreach(HexTile tile in selectedTiles)
+            foreach (HexTile tile in selectedTiles)
             {
                 tile.unselectTile();
             }
@@ -133,7 +133,7 @@ namespace FantasyCiv.GameElements
         }
 
 
-        private void moveUnitRandom()
+       /* private void moveUnitRandom()
         {
             var rand = new Random();
             List<HexTile> neighbours = this.getNeighbours();
@@ -142,19 +142,19 @@ namespace FantasyCiv.GameElements
             HexTile newTile = neighbours[indexTile];
             maplistener.moveUnitTo(this, newTile.qCoord, newTile.rCoord);
 
-        }
+        }*/
 
         private void initializeTileSize()
         {
-            GrassTile grass = new GrassTile(0, 0,0,0);
+            GrassTile grass = new GrassTile(0, 0, 0, 0);
             grass.setContentListener(contentListener);
             grass.load();
-            this.tileSize = (grass.getHeight() / 2.0) -1;
+            this.tileSize = (grass.getHeight() / 2.0) - 1;
         }
 
         private List<HexTile> createArrayOfTiles(int nmbOfTiles, int x, int y)
         {
-            int tileWidth = (int) Math.Round(this.tileSize * (Math.Sqrt(3)));
+            int tileWidth = (int)Math.Round(this.tileSize * (Math.Sqrt(3)));
             HexTile tile;
             List<HexTile> array = new List<HexTile>();
             for (int i = 0; i < nmbOfTiles; i++)
@@ -162,7 +162,7 @@ namespace FantasyCiv.GameElements
                 int[] hexCoord = realToQRCoord(i * tileWidth + x, y);
                 if (i % 3 == 0)
                 {
-                    tile = new WaterTile(i * tileWidth + x, y,hexCoord[0],hexCoord[1]);
+                    tile = new WaterTile(i * tileWidth + x, y, hexCoord[0], hexCoord[1]);
                 }
                 else if (i % 4 == 0)
                 {
@@ -190,7 +190,7 @@ namespace FantasyCiv.GameElements
             {
                 int indexTile = rand.Next(0, sizeAvailable);
                 int[] hexCoord = realToQRCoord(i * tileWidth + x, y);
-                tile = availableTiles[indexTile].createTile(i * tileWidth + x, y,hexCoord[0],hexCoord[1]);
+                tile = availableTiles[indexTile].createTile(i * tileWidth + x, y, hexCoord[0], hexCoord[1]);
                 tile.setContentListener(contentListener);
                 tile.load();
                 array.Add(tile);
@@ -203,10 +203,11 @@ namespace FantasyCiv.GameElements
          * r is the row number, q is the diagonal column, r can be negative.
          * 
          */
-        public HexTile getTileAtCoordinate( int q, int r)
+        public HexTile getTileAtCoordinate(int q, int r)
         {
-            int[] coordinates = axialToOffset(q,r);
-            if(coordinates[0]<0 || coordinates[1] < 0 || coordinates[0]>= map.Count || coordinates[1] >= map[coordinates[0]].Count){
+            int[] coordinates = axialToOffset(q, r);
+            if (coordinates[0] < 0 || coordinates[1] < 0 || coordinates[0] >= map.Count || coordinates[1] >= map[coordinates[0]].Count)
+            {
                 return null;
             }
             return map[coordinates[0]][coordinates[1]];
@@ -214,7 +215,7 @@ namespace FantasyCiv.GameElements
 
         private HexTile getTileAtPixel(double doubleX, double doubleY)
         {
-            int[] roundedHex = realToQRCoord(doubleX,  doubleY);
+            int[] roundedHex = realToQRCoord(doubleX, doubleY);
             return getTileAtCoordinate(roundedHex[0], roundedHex[1]);
         }
 
@@ -236,14 +237,14 @@ namespace FantasyCiv.GameElements
             int row = rand.Next(0, map.Count);
             int column = rand.Next(0, map[row].Count);
             randomTile = map[row][column];
-            while(randomTile is WaterTile)
+            while (randomTile is WaterTile)
             {
                 row = rand.Next(0, map.Count);
                 column = rand.Next(0, map[row].Count);
                 randomTile = map[row][column];
             }
             return randomTile;
-            
+
         }
         private int[] hexRound(double q, double r)
         {
@@ -264,7 +265,7 @@ namespace FantasyCiv.GameElements
             double y_diff = Math.Abs(ry - y);
             double z_diff = Math.Abs(rz - z);
 
-            if (x_diff > y_diff && x_diff > z_diff) 
+            if (x_diff > y_diff && x_diff > z_diff)
             {
                 rx = -ry - rz;
             }
@@ -272,12 +273,12 @@ namespace FantasyCiv.GameElements
             {
                 ry = -rx - rz;
             }
-            else 
+            else
             {
                 rz = -rx - ry;
             }
 
-            return new int[] {(int) rx,(int) ry, (int) rz };
+            return new int[] { (int)rx, (int)ry, (int)rz };
         }
 
         private int[] cubeToAxial(int[] cubeCoord)
@@ -312,12 +313,12 @@ namespace FantasyCiv.GameElements
             List<HexTile> neighbours = new List<HexTile>();
             neighbours.Add(this.getTileAtCoordinate(qCoord - 1, rCoord));
             neighbours.Add(this.getTileAtCoordinate(qCoord + 1, rCoord));
-            neighbours.Add(this.getTileAtCoordinate(qCoord, rCoord -1));
+            neighbours.Add(this.getTileAtCoordinate(qCoord, rCoord - 1));
             neighbours.Add(this.getTileAtCoordinate(qCoord, rCoord + 1));
             neighbours.Add(this.getTileAtCoordinate(qCoord - 1, rCoord + 1));
             neighbours.Add(this.getTileAtCoordinate(qCoord + 1, rCoord - 1));
             return neighbours;
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         //TODO check if no other units

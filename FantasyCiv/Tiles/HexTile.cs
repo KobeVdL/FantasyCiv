@@ -106,10 +106,6 @@ namespace FantasyCiv.GameElements
         public virtual void handleMouseClick(int x, int y, KeyboardState kstate)
         {
             this.setSelected(!this.isSelected());
-            if (unit != null)
-            {
-                moveUnitRandom();
-            }
         }
 
         public Unit removeUnit()
@@ -119,16 +115,11 @@ namespace FantasyCiv.GameElements
             return releasedUnit;
         }
 
-        private void moveUnitRandom()
+        public bool hasUnit()
         {
-            var rand = new Random();
-            List<HexTile> neighbours = this.getNeighbours();
-            int n = neighbours.Count;
-            int indexTile = rand.Next(0, n);
-            HexTile newTile = neighbours[indexTile];
-            maplistener.moveUnitTo(this, newTile.qCoord, newTile.rCoord);
-
+            return this.unit != null;
         }
+
 
         private List<HexTile> getNeighbours()
         {
